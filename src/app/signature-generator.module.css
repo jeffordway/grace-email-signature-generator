@@ -1,0 +1,144 @@
+/* Container styling */
+.container {
+    width: 100%;
+    max-width: 850px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+.intro {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 2em;
+}
+
+.form-container, .output-container {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fdfdfd;
+}
+
+.container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="tel"],
+.container input[type="url"],
+.container textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.container input[type="text"]:focus,
+.container input[type="email"]:focus,
+.container input[type="tel"]:focus,
+.container input[type="url"]:focus,
+.container textarea:focus {
+    border-color: #5cb85c;
+    outline: none;
+}
+
+.container input[type="url"] + small {
+    display: block;
+    margin-top: -12px;
+    margin-bottom: 18px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.container button {
+    display: inline-block;
+    background-color: #5cb85c;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.container button:hover {
+    background-color: #4cae4c;
+}
+
+.container #copyBtn {
+    background-color: #337ab7;
+}
+
+.container #copyBtn:hover {
+    background-color: #286090;
+}
+
+.container .signature-preview-box {
+    border: 2px dashed #b0bec5;
+    padding: 20px;
+    margin-bottom: 25px;
+    min-height: 120px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.container textarea#htmlOutput {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+    background-color: #eef1f2;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.95em;
+    color: #777;
+    width: 100%;
+    max-width: 850px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.3em;
+    }
+    .container button {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    button:last-of-type {
+        margin-bottom: 0;
+    }
+}

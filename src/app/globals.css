@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-primary: #253d84;
+  --color-secondary: #008c8c;
+  --color-white: #f3f1df;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Nunito Sans', Arial, sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+html, body {
+  background: var(--color-primary) !important;
+  color: var(--foreground);
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+button {
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-primary);
+  transition: background 0.2s, color 0.2s;
+}
+button:hover, button:focus {
+  background: #1b295c;
+  color: #fff;
+  outline: none;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 0.7em;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+    /* border-bottom removed */
+    padding-bottom: 0.3em;
+    margin-top: 1.5em;
+}
+
+h3 {
+    font-size: 1.2em;
+    color: #34495e;
+    margin-top: 1em;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Nunito Sans', Arial, sans-serif;
+}
