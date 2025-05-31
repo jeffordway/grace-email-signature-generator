@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import SignatureForm from "./components/SignatureForm";
+import { formatPhoneNumber } from "./utils/phone";
 import SignaturePreview from "./components/SignaturePreview";
 import CopyButton from "./components/CopyButton";
 import Image from "next/image";
@@ -63,14 +64,17 @@ export default function Home() {
     <td style="width: 1px; min-width: 1px; max-width: 1px; padding: 0; border: none; background: #253d84; height: 90px;"></td>
     <td style="vertical-align: middle; background: transparent; padding-left: 16px;">
       <div style="font-size: 1.5em; font-weight: 900; color: #253d84;">${fullName || "Full Name"}</div>
-      <div style="font-size: 1.125em; font-weight: 600; color: #253d84;">${title || "Title/Role"}</div>
+      <div style="font-size: 1.125em; font-weight: 500; color: #253d84;">${title || "Title/Role"}</div>
       <div style="font-size: 1em; font-weight: 500; color: #253d84;">Grace Community Church</div>
-      ${mobile ? `<div style="font-size: 0.75em; color: #253d84;">Cell: ${mobile}</div>` : ""}
-      ${office ? `<div style="font-size: 0.75em; color: #253d84;">Office: ${office}</div>` : ""}
+      ${mobile ? `<div style="font-size: 0.75em; color: #253d84; margin-top: 6px;">
+        <span style="font-weight: bold;">Mobile:</span> ${formatPhoneNumber(mobile)}
+      </div>` : ""}
+      ${office ? `<div style="font-size: 0.75em; color: #253d84; margin-top: 2px;">
+        <span style="font-weight: bold;">Office:</span> ${formatPhoneNumber(office)}
+      </div>` : ""}
     </td>
   </tr>
 </table>`;
-
 
 
   const mainContent = (

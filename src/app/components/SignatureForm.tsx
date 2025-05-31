@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { z } from "zod";
+import { formatPhoneNumber } from "../utils/phone";
+
 
 export interface SignatureFormProps {
   fullName: string;
@@ -11,14 +13,17 @@ export interface SignatureFormProps {
 }
 
 const phoneSchema = z.string().optional().refine(
-  (val) =>
-    !val ||
-    /^\+?[1-9]\d{0,2}[-.\s]?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/.test(val.trim()),
+  (val) => {
+    if (!val) return true;
+    const digits = val.replace(/\D/g, "");
+    return digits.length === 10;
+  },
   {
-    message:
-      "Invalid phone format. Use +1-555-555-5555, (555) 555-5555, or 555-555-5555."
+    message: "Please enter a valid 10-digit phone number."
   }
 );
+
+
 
 export default function SignatureForm({
   fullName,
@@ -31,16 +36,20 @@ export default function SignatureForm({
   const [officeError, setOfficeError] = useState<string>("");
 
   const handleInputChange = (field: string, value: string) => {
+    // Always strip to digits, format for display, and validate digits only
+    const digits = value.replace(/\D/g, "").slice(0, 10);
+    const result = phoneSchema.safeParse(digits);
     if (field === "mobile") {
-      const result = phoneSchema.safeParse(value);
       setMobileError(result.success ? "" : result.error.issues[0].message);
-    }
-    if (field === "office") {
-      const result = phoneSchema.safeParse(value);
+      onChange(field, digits); // Pass only digits to parent
+    } else if (field === "office") {
       setOfficeError(result.success ? "" : result.error.issues[0].message);
+      onChange(field, digits);
+    } else {
+      onChange(field, value);
     }
-    onChange(field, value);
   };
+
   return (
     <form className="mb-8" onSubmit={e => e.preventDefault()}>
       <fieldset className="mb-6 p-4 border-2 border-[--color-primary] rounded-xl">
@@ -76,9 +85,9 @@ export default function SignatureForm({
               type="tel"
               id="mobile"
               className={`w-full border ${mobileError ? 'border-red-500' : 'border-[--color-primary]'} rounded px-3 py-2 bg-[--color-white] text-[--color-foreground] focus:outline-none focus:border-[--color-primary] focus:ring-2 focus:ring-[--color-primary] mb-2`}
-              value={mobile}
+              value={formatPhoneNumber(mobile)}
               onChange={e => handleInputChange("mobile", e.target.value)}
-              placeholder="e.g., +1-555-0102"
+              placeholder="(555) 555-5555"
               autoComplete="tel"
             />
             {mobileError && <div className="text-red-600 text-sm mb-2">{mobileError}</div>}
@@ -89,9 +98,9 @@ export default function SignatureForm({
               type="tel"
               id="office"
               className={`w-full border ${officeError ? 'border-red-500' : 'border-[--color-primary]'} rounded px-3 py-2 bg-[--color-white] text-[--color-foreground] focus:outline-none focus:border-[--color-primary] focus:ring-2 focus:ring-[--color-primary] mb-2`}
-              value={office}
+              value={formatPhoneNumber(office)}
               onChange={e => handleInputChange("office", e.target.value)}
-              placeholder="e.g., +1-555-0103"
+              placeholder="(555) 555-5555"
               autoComplete="tel"
             />
             {officeError && <div className="text-red-600 text-sm mb-2">{officeError}</div>}
