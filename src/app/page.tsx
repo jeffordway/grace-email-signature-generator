@@ -14,6 +14,7 @@ export default function Home() {
   const [title, setTitle] = useState("");
   const [mobile, setMobile] = useState("");
   const [office, setOffice] = useState("");
+  const [officeExt, setOfficeExt] = useState("");
   const [copied, setCopied] = useState(false);
   
 
@@ -24,11 +25,9 @@ export default function Home() {
       case "title": setTitle(value); break;
       case "mobile": setMobile(value); break;
       case "office": setOffice(value); break;
-
-
+      case "officeExt": setOfficeExt(value); break;
       default: break;
     }
-
   };
 
   // Signature HTML for preview and copying
@@ -46,7 +45,7 @@ export default function Home() {
       ${(mobile || office) ? `<div style="font-size: 0.625em; color: #253d84; margin-top: 4px; display: flex; align-items: center; gap: 4px;">
         ${mobile ? `<span><span style='font-weight: bold;'>Mobile:</span> ${formatPhoneNumber(mobile)}</span>` : ''}
         ${(mobile && office) ? `<span style='font-size:1.2em; color:#253d84;'>&middot;</span>` : ''}
-        ${office ? `<span><span style='font-weight: bold;'>Office:</span> ${formatPhoneNumber(office)}</span>` : ''}
+        ${office ? `<span><span style='font-weight: bold;'>Office:</span> ${formatPhoneNumber(office)}${officeExt ? ` x${officeExt}` : ''}</span>` : ''}
       </div>` : ""}
     </td>
   </tr>
@@ -73,13 +72,14 @@ export default function Home() {
           <span className="block">1. Fill in your details below.</span>
           <span className="block">2. Review your signature preview.</span>
           <span className="block">3. Click <span className="font-semibold">Copy Signature</span>.</span>
-          <span className="block">4. Paste it into your email settings in to Outlook.</span>
+          <span className="block">4. <strong>Paste it into your email settings using <u>Ctrl+V</u> (Windows) or <u>Cmd+V</u> (Mac)</strong> for best results. Right-click paste may lose formatting in some email clients.</span>
         </p>
         <SignatureForm
           fullName={fullName}
           title={title}
           mobile={mobile}
           office={office}
+          officeExt={officeExt}
           onChange={handleFormChange}
         />
         <div className="mb-8">

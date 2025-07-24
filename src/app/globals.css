@@ -9,6 +9,7 @@
   --color-white: #f3f1df;
 }
 
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
