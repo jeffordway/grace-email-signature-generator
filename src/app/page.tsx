@@ -40,9 +40,9 @@ export default function Home() {
     <td style="width: 1px; min-width: 1px; max-width: 1px; padding: 0; border: none; background: #253d84; height: 84px;"></td>
     <td style="vertical-align: middle; background: transparent; padding-left: 1rem;">
       <div style="font-size: 1.125rem; font-weight: 900; color: #253d84;">${fullName || "Full Name"}</div>
-      <div style="font-size: .875rem; font-weight: 500; color: #253d84;">${title || "Title/Role"}</div>
-      <div style="font-size: .75rem; font-weight: 500; color: #253d84;">Grace Community Church</div>
-      ${(mobile || office) ? `<div style="font-size: 0.625rem; color: #253d84; display: flex; align-items: center; gap: 4px;">
+      <div style="font-size: .875rem; font-weight: 500; margin-top: .125rem; color: #253d84;">${title || "Title/Role"}</div>
+      <div style="font-size: .75rem; font-weight: 500; margin-top: .125rem; color: #253d84;">Grace Community Church</div>
+      ${(mobile || office) ? `<div style="font-size: 0.625rem; margin-top: .125rem; color: #253d84; display: flex; align-items: center; gap: 4px;">
         ${mobile ? `<span><span style='font-weight: bold;'>Mobile:</span> ${formatPhoneNumber(mobile)}</span>` : ''}
         ${(mobile && office) ? `<span style='font-size:1.2rem; color:#253d84;'>&middot;</span>` : ''}
         ${office ? `<span><span style='font-weight: bold;'>Office:</span> ${formatPhoneNumber(office)}${officeExt ? ` x${officeExt}` : ''}</span>` : ''}
